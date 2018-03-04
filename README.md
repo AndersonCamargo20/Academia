@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Esta aplicação foi construída como aprendizagem para os estudos de POO....
 
-Things you may want to cover:
+Para rodar esta aplicação em sua máquina lembre-se de ter instalado:
 
-* Ruby version
+* Ruby
+* Rails
+* Instalar as dependências (Gems)
+* Rodar o comando rails db:migrate para criar o banco
+* Configurar o banco de dados
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Att.
+Anderson A. H. de Camargo
