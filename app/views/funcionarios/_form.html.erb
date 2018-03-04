@@ -1,0 +1,72 @@
+<%= form_with(model: funcionario, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(funcionario.errors.count, "Erro") %> Impediram o funcionário de ser salvo:</h2></div>
+  <% end %>
+
+    <% if funcionario.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% funcionario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form.fields_for :pessoa do |f| %>
+<div class="container">
+  <div class="formulario">
+    
+    <div class="field">
+      <%= f.label "Nome:" %> 
+      <br><%= f.text_field :nome, id: :pessoa_nome, :placeholder => "Nome Completo", :size => "60" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label "Rua: " %>
+      <br><%= f.text_field :rua, id: :pessoa_rua, :size => "60" %>
+    </div>
+
+     <div class="field">
+      <%= f.label "Bairro: " %>
+      <br><%= f.text_field :bairro, id: :pessoa_bairro, :size => "60"%>
+    </div>
+
+    <div class="field">
+      <%= f.label "Telefone: " %>
+      <br><%= f.text_field :telefone, id: :pessoa_telefone, :size => "60" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Email: " %>
+      <br><%= form.text_field :email, id: :pessoa_email, :size => "60" %>
+    </div>
+<% end %>
+
+
+    <div class="field">
+      <%= form.label "Sexo: " %>
+      <br><%= form.select :sexo, ['Masculino', 'Feminino'] %><br>
+    </div>
+
+    <div class="field">
+      <%= form.label "Cargo: " %>
+      <br><%= form.collection_select :cargo_id, Cargo.all, :id, :descricaoCargo, prompt: "Selecione o cargo" %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Salário: " %>
+      <br><%= form.text_field :salario, id: :funcionario_salario %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Data da Contratação: " %>
+      <br><%= form.date_select :dataContratacao, id: :funcionario_dataContratacao %>
+    </div>
+    </div>  
+</div>
+  <div class="actions">
+    <%= link_to ' << Voltar', funcionarios_path, :class => "btn btn-danger text-white" %>
+    <button type="submit" class="btn btn-success">Salvar Funcionário</button>
+  </div>
+<% end %>

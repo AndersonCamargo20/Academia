@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aluno: one
+  funcionario: one
+  dataExame: 2017-11-25
+  peso: 1.5
+  altura: 1.5
+  altura: 1.5
+  imc: 1.5
+  busto: 1.5
+  cintura: 1.5
+
+two:
+  aluno: two
+  funcionario: two
+  dataExame: 2017-11-25
+  peso: 1.5
+  altura: 1.5
+  altura: 1.5
+  imc: 1.5
+  busto: 1.5
+  cintura: 1.5

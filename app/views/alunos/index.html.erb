@@ -1,0 +1,71 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Mostrar Alunos Desativados</button>
+       
+
+       
+   <h1>Alunos Ativos</h1>
+    <div class="table-responsive animated zoomIn">
+      <table class="table ">
+        <thead class="text-center text-white">
+          <tr>
+             <th>Matricula</th>
+            <th>Aluno</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>        
+
+        <tbody class="text-center">
+          <% @alunos.each do |aluno| %>
+              <% if aluno.ativo? %>
+                <tr>
+                  <td><%= aluno.matricula %></td>
+                  <td><%= aluno.pessoa.nome %></td>
+                  <td><%= link_to 'Visualizar', aluno, :class => "btn btn-primary text-white" %>
+                  <%= link_to 'Editar', edit_aluno_path(aluno), :class => "btn btn-info text-white" %>
+                  <%= link_to 'Excluir', aluno, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger text-white" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+
+  <!-- Collapse de alunos Desativados-->
+    <div class="collapse multi-collapse " id="multiCollapseExample2">
+      <h1>Alunos Desativados</h1>
+          <div class="table-responsive animated zoomIn">
+            <table class="table ">
+              <thead class="text-center text-white">
+                <tr>
+                  <th>Matricula</th>
+                  <th>Aluno</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody class="text-center">
+                <% @alunos.each do |aluno| %>
+                  <% if aluno.ativo == false %>
+                    <tr>
+                      <td><%= aluno.matricula %>
+                      <td><%= aluno.pessoa.nome %>
+                      <td><%= link_to 'Visualizar', aluno, :class => "btn btn-primary text-white" %>
+                          <%= link_to 'Editar', edit_aluno_path(aluno), :class => "btn btn-info text-white" %>
+                          <%= link_to 'Excluir', aluno, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger text-white" %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'Cadastrar Aluno', new_aluno_path, :class => "btn btn-success text-white" %>

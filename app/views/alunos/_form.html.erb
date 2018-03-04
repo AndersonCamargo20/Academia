@@ -1,0 +1,69 @@
+<%= form_with(model: aluno, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(aluno.errors.count, "Erro") %> Impediram o Aluno de ser salvo:</h2></div>
+  <% end %>
+
+    <% if aluno.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% aluno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<%= form.fields_for :pessoa do |form|%>
+<div class="container animated slideInLeft">
+  <div class="formulario">
+
+    <div class="field">
+      <%= form.label "Nome:" %> 
+      <br><%= form.text_field :nome, id: :pessoa_nome, :placeholder => "Nome Completo", :size => "60" %>
+    </div>
+    
+    <div class="field">
+      <%= form.label "Rua: " %>
+      <br><%= form.text_field :rua, id: :pessoa_rua, :size => "60" %>
+    </div>
+
+     <div class="field">
+      <%= form.label "Bairro: " %>
+      <br><%= form.text_field :bairro, id: :pessoa_bairro, :size => "60"%>
+    </div>
+
+    <div class="field">
+      <%= form.label "Sexo: " %>
+      <br><%= form.select :sexo, ['Masculino', 'Feminino'] %><br>
+    </div>
+
+    <div class="field">
+      <%= form.label "Telefone: " %>
+      <br><%= form.number_field :telefone, id: :pessoa_telefone, :size => "60"%>
+    </div>
+
+    <div class="field">
+      <%= form.label "Email: " %>
+      <br><%= form.text_field :email, id: :pessoa_email, :size => "60"%>
+    </div>
+<% end %>
+
+  <div class="field">
+    <%= form.label "Ativo: " %>
+    <br><%= form.check_box :ativo, id: :aluno_ativo %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Matrícula" %>
+    <br><%= form.text_field :matricula, id: :aluno_matricula, :size => "60"%>
+  </div>
+</div>  
+</div>
+  <div class="actions">
+    <%= link_to ' << Voltar', alunos_path, :class => "btn btn-danger text-white" %>
+    <button type="submit" class="btn btn-success">Salvar Aluno</button>
+  </div>
+<% end %>
+

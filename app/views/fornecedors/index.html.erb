@@ -1,0 +1,81 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Mostrar Fornecedores desativados</button>
+       
+        <br>
+        <br>
+       
+   <h1>Lista de fornecedores ativos</h1>
+    <div class="table-responsive animated zoomIn">
+      <table class="table ">
+        <thead class="text-center text-white">
+          <tr>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>Tipo</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>        
+        <tbody class="text-center">
+
+          <% @fornecedors.each do |fornecedor| %>
+              <% if fornecedor.ativo? %>
+                <tr>
+                  <td><%= fornecedor.nome %></td>
+                  <td><%= fornecedor.cidade %></td>
+                  <td><%= fornecedor.tipo %></td>
+                  <td>
+                    <%= link_to 'Visualizar', fornecedor, :class => "btn btn-primary text-white" %>
+                    <%= link_to 'Editar', edit_fornecedor_path(fornecedor), :class => "btn btn-info text-white" %>
+                    <%= link_to 'Excluir', fornecedor, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir este registro?' }, :class => "btn btn-danger text-white" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <div class="collapse multi-collapse " id="multiCollapseExample2">
+       <h1>Lista de fornecedores desativados</h1>
+        <div class="table-responsive animated zoomIn">
+          <table class="table ">
+            <thead class="text-center text-white">
+              <tr>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Tipo</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>        
+            <tbody class="text-center">
+
+              <% @fornecedors.each do |fornecedor| %>
+                  <% if !fornecedor.ativo? %>
+                    <tr>
+                      <td><%= fornecedor.nome %></td>
+                      <td><%= fornecedor.cidade %></td>
+                      <td><%= fornecedor.tipo %></td>
+                      <td>
+                        <%= link_to 'Visualizar', fornecedor, :class => "btn btn-primary text-white" %>
+                        <%= link_to 'Editar', edit_fornecedor_path(fornecedor), :class => "btn btn-info text-white" %>
+                        <%= link_to 'Excluir', fornecedor, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir este registro?' }, :class => "btn btn-danger text-white" %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <br>
+        <br>
+<%= link_to 'Cadastrar Fornecedor', new_fornecedor_path, :class => "btn btn-success text-white" %>

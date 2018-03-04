@@ -1,0 +1,64 @@
+<%= form_with(model: exame_fisico, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(exame_fisico.errors.count, "Erro") %> Impediram o registro de ser salvo:</h2></div>
+  <% end %>
+
+    <% if exame_fisico.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% exame_fisico.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container animated slideInLeft">
+  <div class="formulario">
+
+  <div class="field">
+    <%= form.label "Nome do Aluno" %>
+    <br><%= form.select :aluno_id, Aluno.all.collect {|x| [x.pessoa.nome, x.id] if x.ativo?}%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Nome do Funcionário" %>
+    <br><%= form.select :funcionario_id, Funcionario.all.collect {|x| [x.pessoa.nome, x.id] unless x.id == 5} %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data Exame" %>
+   <br> <%= form.date_select :dataExame, id: :exame_fisico_dataExame %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Peso" %>
+   <br> <%= form.text_field :peso, id: :exame_fisico_peso, :size => "60" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Altura"%>
+   <br> <%= form.text_field :altura, id: :exame_fisico_altura, :size => "60" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Imc" %>
+    <br><%= form.text_field :imc, id: :exame_fisico_imc, :size => "60" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Busto" %>
+   <br> <%= form.text_field :busto, id: :exame_fisico_busto, :size => "60" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Cintura" %>
+   <br> <%= form.text_field :cintura, id: :exame_fisico_cintura, :size => "60" %>
+  </div>
+ </div>
+ </div>
+
+  <div class="actions">
+    <%= link_to ' << Voltar', exame_fisicos_path, :class => "btn btn-danger text-white" %>
+    <button type="submit" class="btn btn-success">Salvar Exame</button>
+  </div>
+<% end %>

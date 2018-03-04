@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aluno: one
+  funcionario: one
+  tipo_exercicio: one
+  dataTreino: 2017-11-26
+
+two:
+  aluno: two
+  funcionario: two
+  tipo_exercicio: two
+  dataTreino: 2017-11-26

@@ -1,0 +1,48 @@
+<%= form_with(model: contas_pagar, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(contas_pagar.errors.count, "Erro") %> Impediram a conta de ser salva:</h2></div>
+  <% end %>
+
+    <% if contas_pagar.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% contas_pagar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container animated slideInLeft">
+  <div class="formulario">
+
+
+  <div class="field">
+    <%= form.label "Nome do Fornecedor:" %>
+  <br>  <%= form.select :fornecedor_id, Fornecedor.all.collect { |x| [x.nome, x.id] if x.ativo?}.compact%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Valor:" %>
+  <br>  <%= form.text_field :valor, id: :contas_pagar_valor, :size => "30"  %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Data Pagamento:" %>
+   <br> <%= form.date_select :data_pagamento, id: :contas_pagar_data_pagamento %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Conta Paga?"%>
+     <%= form.check_box :pago, id: :contas_pagar_pago %>
+  </div>
+
+</div>
+</div>
+
+
+<div class="actions">
+    <%= link_to ' << Voltar', contas_pagars_path, :class => "btn btn-danger text-white" %>
+    <button type="submit" class="btn btn-success">Salvar Conta</button>
+  </div>
+<% end %>

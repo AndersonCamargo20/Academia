@@ -1,0 +1,38 @@
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<h1><%= @aluno.pessoa.nome  %></h1>
+<div class="container animated zoomIn">
+	<div class="table-responsive">
+  		<table class="table">
+  			<thead class="text-center text-white">
+    			<tr>
+			      <th>Matricula</th>
+			      <th>Situação</th>
+			      <th>Rua</th>
+			      <th>Bairro</th>
+			      <th>E-mail</th>
+			      <th>Telefone</th>
+			      <th>Sexo</th>
+			      <th colspan="3"></th>
+			    </tr>
+  			</thead>
+
+  			<tbody class="text-center">
+			    <tr>
+			    	<td><%= @aluno.matricula%></td>
+			        <td><% if @aluno.ativo? %> Ativo <% else %> Desativado <% end %> </td>
+			        <td><%= @aluno.pessoa.rua %></td>
+			        <td><%= @aluno.pessoa.bairro %></td>
+			        <td><%= @aluno.pessoa.email %></td>
+			        <td><%= @aluno.pessoa.telefone %></td>
+			        <td><%= @aluno.pessoa.sexo %></td>
+			    </tr>
+  			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= link_to '<< Voltar', alunos_path, :class => "btn btn-danger text-white" %>

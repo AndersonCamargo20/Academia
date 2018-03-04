@@ -1,0 +1,35 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h1><%=@contas_pagar.fornecedor.nome %></h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="text-center text-white">
+      <tr>
+        <th>Data do pagamento:</th>
+        <th>Situação:</th>
+        <th>Valor:</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody class="text-center">
+      <tr>
+        <td><%=@contas_pagar.data_pagamento%></td>
+        <td> 
+          <% if @contas_pagar.pago?%>
+            <strong><span class = "alert alert-success">Conta paga</span></strong>
+            <% else %>
+              <strong><span class = "alert alert-danger">Conta não paga</span></strong>
+        </td>
+        <% end %>
+        <td>R$ <%=@contas_pagar.valor%></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  
+<%= link_to '<< Voltar', contas_pagars_path, :class => "btn btn-danger text-white" %>
+  

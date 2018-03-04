@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descricao: MyString
+  valor: 1.5
+  data_pagamento: 2017-12-04
+  pago: false
+
+two:
+  descricao: MyString
+  valor: 1.5
+  data_pagamento: 2017-12-04
+  pago: false

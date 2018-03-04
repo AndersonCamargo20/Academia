@@ -1,0 +1,23 @@
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<h1>Visualizando Tipo de Exercício</h1>
+	<div class="table-responsive">
+  		<table class="table">
+  			<thead class="text-center text-white">
+    			<tr>
+			      <th>Descrição</th>
+			    </tr>
+  			</thead>
+
+  			<tbody class="text-center">
+			    <tr>
+			    	<td><%= @tipo_exercicio.descricaoExercicio %></td>
+			    </tr>
+  			</tbody>
+		</table>
+	</div>
+
+<%= link_to '<< Voltar', tipo_exercicios_path, :class => "btn btn-danger text-white" %>

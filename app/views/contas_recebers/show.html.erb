@@ -1,0 +1,42 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h1>Conta: <%= @contas_receber.aluno.pessoa.nome %></h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="text-center text-white">
+      <tr>
+        <th>Data do Recebimento</th>
+        <th>Situação</th>
+        <th>Valor</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+<tbody class="text-center">
+      <tr>
+        <td><%= @contas_receber.data_recebimento %></td>
+        <td> 
+          <% if @contas_receber.pago?%>
+            <strong><span class = "alert alert-success">Conta recebida</span></strong>
+            <% else %>
+              <strong><span class = "alert alert-danger">Conta não recebida</span></strong>
+        </td>
+        <% end %>
+         <td>R$<%= @contas_receber.valor %><td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  
+<%= link_to '<< Voltar', contas_recebers_path, :class => "btn btn-danger text-white" %>
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Mostrar Contas recebidas</button>
+       
+    <br>
+    <br>
+    <br>
+       
+   <h1>Lista de contas a receber</h1>
+    <div class="table-responsive animated zoomIn">
+      <table class="table ">
+        <thead class="text-center text-white">
+          <tr>
+            <th>Descricao</th>
+            <th>Data do pagamento</th>
+            <th>Situação</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>        
+        <tbody class="text-center">
+
+          <% @contas_recebers.each do |conta| %>
+              <% if !conta.pago? %>
+                <tr>
+                  <td><%= conta.aluno.pessoa.nome %></td>
+                  <td>
+                    <% if conta.data_recebimento.to_date.future? %>
+                      <strong><span class = "alert alert-dark">Faltam <%= (conta.data_recebimento - @date + 1).to_i%> dia(s) para o vencimento da conta!</span></strong>
+                    <% else %>
+                      <% if conta.data_recebimento.to_date.past?%>
+                        <strong><span class = "alert alert-danger">A conta está atrasada a <%= (@date - conta.data_recebimento).to_i%> dia(s)!</span></strong>
+                      <% else %>
+                        <%  if conta.data_recebimento.to_date.today? %>
+                          <strong><span class = "alert alert-warning">A conta vence hoje!</span></strong>
+
+                  </td>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                    <td><strong><span class = "alert alert-danger">Conta não recebida</span></strong></td>
+                  <td>
+                    <%= link_to 'Visualizar', conta, :class => "btn btn-primary text-white" %>
+                    <%= link_to 'Editar', edit_contas_receber_path(conta), :class => "btn btn-info text-white" %>
+                    <%= link_to 'Excluir', conta, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger text-white" %>
+                  </td>
+                </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+      <!-- Collapse de alunos Desativados-->
+      <div class="collapse multi-collapse " id="multiCollapseExample2">
+        <h1>Lista de contas recebidas</h1>
+        <div class="table-responsive animated zoomIn">
+          <table class="table ">
+             <thead class="text-center text-white">
+              <tr>
+                <th>Nome do Aluno</th>
+                 <th>Data do pagamento</th>
+                <th>Situação</th>
+                <th colspan="3"></th>
+               </tr>
+            </thead>
+            <tbody class="text-center">
+               <% @contas_recebers.each do |conta| %>
+                  <tr>
+                    <td><%= conta.aluno.pessoa.nome %>
+                    <td> <strong><span class = "alert alert-success"><%= conta.data_recebimento%></span></strong></td>
+                    <td><strong><span class = "alert alert-success">Conta recebida</span></strong></td>
+                    <td>
+                      <%= link_to 'Visualizar', conta, :class => "btn btn-primary text-white" %>
+                      <%= link_to 'Excluir', conta, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger text-white" %>
+                    </td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+<% if @soma!=0 %>
+  <div class = "alert alert-danger">Total de conta(s) em aberto: R$ <%= @soma%></div>
+<% else  %>
+  <div class = "alert alert-success">Total de contas em aberto: R$ <%= @soma%></div>
+<% end %>
+<%= link_to 'Cadastrar contas a pagar', new_contas_pagar_path, :class => "btn btn-success text-white" %>

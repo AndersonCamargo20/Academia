@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aluno: one
+  data_recebimento: 2017-12-04
+  pago: false
+
+two:
+  aluno: two
+  data_recebimento: 2017-12-04
+  pago: false

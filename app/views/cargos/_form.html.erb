@@ -1,0 +1,29 @@
+<%= form_with(model: cargo, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(cargo.errors.count, "Erro") %> Impediram o cargo de ser salvo:</h2></div>
+  <% end %>
+
+    <% if cargo.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% cargo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container animated slideInLeft">
+  <div class="formulario">
+    
+    <div class="field">
+      <%= form.label "Descricao do Cargo: " %>
+      <br><%= form.text_field :descricaoCargo, id: :cargo_descricaoCargo, :size => "60" %>
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <%= link_to '<< Voltar', cargos_path, :class => "btn btn-danger text-white" %>
+  <%= form.submit "Salvar Cargo", :class => "btn btn-success text-white"%>
+</div>
+<% end %>

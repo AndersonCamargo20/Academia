@@ -1,0 +1,24 @@
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<h1>Visualizando Cargo</h1>
+<div class="container">
+	<div class="table-responsive">
+  		<table class="table">
+  			<thead class="text-center text-white">
+    			<tr>
+			      <th>Descricao</th>
+			    </tr>
+  			</thead>
+
+  			<tbody class="text-center">
+			    <tr>
+			        <td><%= @cargo.descricaoCargo %> </td>
+			    </tr>
+  			</tbody>
+		</table>
+	</div>
+</div>
+<%= link_to '<< Voltar', cargos_path, :class => "btn btn-danger text-white" %>

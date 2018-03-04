@@ -1,0 +1,31 @@
+<%= form_with(model: tipo_exercicio, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(tipo_exercicio.errors.count, "Erro") %> Impediram o registro de ser salvo:</h2></div>
+  <% end %>
+
+    <% if tipo_exercicio.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% tipo_exercicio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container animated slideInLeft">
+  <div class="formulario">
+    
+    <div class="field">
+      <%= form.label "Descrição do Exercício" %>
+      <br><%= form.text_field :descricaoExercicio, id: :tipo_exercicio_descricaoExercicio, :size => "60" %>
+    </div>
+  </div>
+</div>
+
+  <div class="actions">
+    <%= link_to ' << Voltar', tipo_exercicios_path, :class => "btn btn-danger text-white" %>
+    <button type="submit" class="btn btn-success">Salvar Exercício</button>
+  </div>
+  
+<% end %>

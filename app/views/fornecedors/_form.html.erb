@@ -1,0 +1,53 @@
+<%= form_with(model: fornecedor, local: true) do |form| %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><h2><%= pluralize(fornecedor.errors.count, "Erro") %> Impediram o fornecedor de ser salvo:</h2></div>
+  <% end %>
+
+    <% if fornecedor.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% fornecedor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container animated slideInLeft">
+    <div class="formulario">
+      <div class="field">
+        <%= form.label "Nome" %>
+        <br><%= form.text_field :nome, id: :fornecedor_nome, :size => "60" %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Cidade" %>
+        <br><%= form.text_field :cidade, id: :fornecedor_cidade, :size => "60" %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Bairro" %>
+        <br><%= form.text_field :bairro, id: :fornecedor_bairro, :size => "60" %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Rua" %>
+        <br><%= form.text_field :rua, id: :fornecedor_rua, :size => "60" %>
+      </div>
+
+      <div class="field">
+        <%= form.label "fornecedor ativo?" %>
+        <br><%= form.check_box :ativo, id: :fornecedor_ativo %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Tipo de produto fornecido?" %>
+        <br><%= form.text_field :tipo, id: :fornecedor_tipo, :size => "60" %>
+      </div>
+    </div>
+  </div>
+    <div class="actions">
+      <%= link_to "<< Voltar", fornecedors_path, :class => "btn btn-danger text-white" %>
+      <%= form.submit "salvar", :class => "btn btn-success"%>
+    </div>
+  <% end %>

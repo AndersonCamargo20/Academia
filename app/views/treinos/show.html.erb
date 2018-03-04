@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+   <h1><strong><%= @treino.tipo_exercicio.descricaoExercicio %></strong></h1>
+    <div class="table-responsive container">
+      <table class="table ">
+        <thead class="text-center text-white">
+          <tr>
+            <th>Aluno:</th>
+            <th>Professor:</th>
+            <th>Data do treino:</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>        
+
+        <tbody class="text-center">
+                <tr>
+                  <td><%= @treino.aluno.pessoa.nome %></td>
+                  <td><%= @treino.funcionario.pessoa.nome %></td>
+                  <td><%= @treino.dataTreino %></td>
+                </tr>
+          </tbody>
+        </table>
+    </div>
+
+<br>
+
+
+<%= link_to '<< Voltar', treinos_path, :class => "btn btn-danger text-white" %>

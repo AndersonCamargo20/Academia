@@ -1,0 +1,47 @@
+<%= form_with(model: pessoa, local: true) do |form| %>
+  <% if pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
+
+      <ul>
+      <% pessoa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Nome:" %> 
+    <br><%= form.text_field :nome, id: :pessoa_nome, :placeholder => "Nome Completo" %>
+  </div>
+  
+  <div class="field">
+    <%= form.label "Rua: " %>
+    <br><%= form.text_field :rua, id: :pessoa_rua, :class => "col-lg-4" %>
+  </div>
+
+   <div class="field">
+    <%= form.label "Bairro: " %>
+    <br><%= form.text_field :bairro, id: :pessoa_bairro, :class => "col-lg-4"%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Sexo: " %>
+    <br><%= form.select :sexo, ['Masculino', 'Feminino'] %><br>
+  </div>
+
+  <div class="field">
+    <%= form.label "Telefone: " %>
+    <br><%= form.number_field :telefone, id: :pessoa_telefone, :class => "col-lg-4" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Email: " %>
+    <br><%= form.text_field :email, id: :pessoa_email, :class => "col-lg-4" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

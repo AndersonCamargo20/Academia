@@ -1,0 +1,35 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h1>Lista de Exercícios</h1>
+<div class="table-responsive">
+  <table class="table ">
+    <thead class="text-center text-white">
+      <tr>
+        <th>Descrição do exercício</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tbody class="text-center">
+    <% @tipo_exercicios.each do |exer| %>
+    
+    <tr>
+      <td><%= exer.descricaoExercicio %></td>
+      <td>
+        <%= link_to 'Visualizar', exer, :class => "btn btn-primary text-white" %>
+        <%= link_to 'Editar', edit_tipo_exercicio_path(exer), :class => "btn btn-info text-white" %>
+       <%= link_to 'Excluir', exer, method: :delete, data: { confirm: 'Tem certeza que deseja excluir este registro?' }, :class => "btn btn-danger text-white" %>
+      </td>
+    </tr>
+    <% end %>
+  
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'Cadastrar Exercicio', new_tipo_exercicio_path, :class => "btn btn-success text-white" %>

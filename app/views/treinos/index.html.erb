@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de Treinos</h1>
+
+    <div class="table-responsive">
+      <table class="table ">
+        <thead class="text-center text-white">
+          <tr>
+            <th>Matricula</th>
+            <th>Aluno</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>        
+
+        <tbody class="text-center">
+          <% @treinos.each do |treino| %>
+                <tr>
+                  <td><%= treino.aluno.pessoa.nome %></td>
+                  <td><%= treino.funcionario.pessoa.nome %></td>
+                  <td><%= link_to 'Visualizar', treino, :class => "btn btn-primary text-white" %>
+                  <%= link_to 'Editar', edit_treino_path(treino), :class => "btn btn-info text-white" %>
+                  <%= link_to 'Excluir', treino, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger text-white" %></td>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+
+<br>
+
+<%= link_to 'Cadastrar Treino', new_treino_path, :class => "btn btn-success text-white" %>
